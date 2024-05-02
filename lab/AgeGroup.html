@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Age Group</title>
+  <style>
+    body{
+      text-align: center;
+      margin: 100px;
+      font-size: larger;
+      background-color: bisque;
+
+    }
+  </style>
+  <script>
+    function displayAgeGroup() {
+      var age = parseInt(document.getElementById('age').value);
+      if (age < 13) {
+        document.getElementById('result').innerHTML = 'Child';
+      } else if (age < 20) {
+        document.getElementById('result').innerHTML = 'Teenage';
+      } else if (age < 35) {
+        document.getElementById('result').innerHTML = 'Young';
+      } else if (age <75) {
+        document.getElementById('result').innerHTML = 'Senior Citizen';
+      }
+      else{
+        document.getElementById('result').innerHTML = 'Are you Still Alive??';
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="age">Age: </label>
+  <input type="text" id="age">
+  <button onclick="displayAgeGroup()">
+    <font face="Sans-serif">
+      Get Age Group
+    </font>
+  </button>
+  <div id="result"></div>
+</body>
+</html>

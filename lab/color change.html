@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Change Background Color</title>
+  <style>
+    body{
+        text-align: center;
+        margin: 100px;
+        font-size: larger;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+  </style>
+  <script>
+    function changeBackgroundColor() {
+      var colors = ['red', 'blue', 'green', 'yellow', 'orange', 'purple'];
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      document.body.style.backgroundColor = randomColor;
+    }
+  </script>
+</head>
+<body>
+  <button onclick="changeBackgroundColor()">
+    <font face="Sans-serif">
+      Change Background Color
+    </font>
+  </button>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>String Verification</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  input[type="text"] {
+    width: 300px;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  button {
+    padding: 10px 20px;
+    background-color: #afa04c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+  #arrayElements {
+    margin-top: 20px;
+  }
+  #arrayElements h2 {
+    margin-bottom: 5px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>String Verification</h2>
+  <input type="text" id="inputString" placeholder="Enter string to verify">
+  <button onclick="checkString()">Check</button>
+  <p id="result"></p>
+  <div id="arrayElements"></div>
+</div>
+
+<script>
+  // Sample array
+  const stringArray = ['apple', 'banana', 'orange', 'grape', 'pear'];
+
+  function checkString() {
+    const inputString = document.getElementById('inputString').value.trim().toLowerCase();
+    const resultElement = document.getElementById('result');
+    const arrayElement = document.getElementById('arrayElements');
+    
+    if (inputString === '') {
+      resultElement.textContent = 'Please enter a string.';
+      return;
+    }
+
+    if (stringArray.includes(inputString)) {
+      resultElement.textContent = The string "${inputString}" exists in the array.;
+    } else {
+      resultElement.textContent = The string "${inputString}" does not exist in the array.;
+    }
+
+    // Display array elements
+    arrayElement.innerHTML = '<h2>Array Elements:</h2>';
+    stringArray.forEach(element => {
+      const h2 = document.createElement('h2');
+      h2.textContent = element;
+      arrayElement.appendChild(h2);
+    });
+  }
+</script>
+</body>
+</html>

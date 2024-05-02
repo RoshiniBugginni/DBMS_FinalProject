@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matrix Addition</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: aquamarine;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  input[type="number"] {
+    width: 50px;
+    margin: 5px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 8px;
+    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
+    appearance: textfield;
+  }
+  input[type="number"]::-webkit-inner-spin-button, 
+  input[type="number"]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+  }
+  button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>Matrix Addition</h2>
+  <div>
+    <label>1st Matrix</label><br>
+    <input type="text" id="m1rows" placeholder="Enter the Rows"> x 
+    <input type="text" id="m1cols" placeholder="Enter the Columns"><br>
+    <div id="matrix1"></div>
+  </div>
+  <div>
+    <label>2nd Matrix:</label><br>
+    <input type="text" id="m2rows" placeholder="Enter the Rows"> x 
+    <input type="text" id="m2cols" placeholder="Enter the Columns"><br>
+    <div id="matrix2"></div>
+  </div>
+  <button onclick="addMatrices()">Add Two Matrices</button>
+  <div id="result"></div>
+</div>
+
+<script>
+  function createMatrixInputs(rows, cols, containerId) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+    for (let i = 0; i < rows; i++) {
+      for (let j = 0; j < cols; j++) {
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'matrix-input';
+        input.style.width = '50px';
+        input.style.margin = '5px';
+        input.style.textAlign = 'center';
+        input.style.border = '1px solid #ddd';
+        input.style.borderRadius = '5px';
+        input.style.padding = '8px';
+        container.appendChild(input);
+      }
+      container.appendChild(document.createElement('br'));
+    }
+  }
+
+  function addMatrices() {
+    const m1Rows = parseInt(document.getElementById('m1rows').value);
+    const m1Cols = parseInt(document.getElementById('m1cols').value);
+    const m2Rows = parseInt(document.getElementById('m2rows').value);
+    const m2Cols = parseInt(document.getElementById('m2cols').value);
+
+    if (isNaN(m1Rows) || isNaN(m1Cols) || isNaN(m2Rows) || isNaN(m2Cols)) {
+      alert('Please enter valid dimensions for both matrices.');
+      return;
+    }
+
+    if (m1Rows !== m2Rows || m1Cols !== m2Cols) {
+      alert('Matrices must have the same dimensions for addition.');
+      return;
+    }
+
+    const matrix1Inputs = document.querySelectorAll('#matrix1 .matrix-input');
+    const matrix2Inputs = document.querySelectorAll('#matrix2 .matrix-input');
+    const resultContainer = document.getElementById('result');
+
+    let result = '<p>Result:</p><table>';
+    for (let i = 0; i < m1Rows; i++) {
+      result += '<tr>';
+      for (let j = 0; j < m1Cols; j++) {
+        const index = i * m1Cols + j;
+        const val1 = parseFloat(matrix1Inputs[index].value) || 0;
+        const val2 = parseFloat(matrix2Inputs[index].value) || 0;
+        result += <td>${val1 + val2}</td>;
+      }
+      result += '</tr>';
+    }
+    result += '</table>';
+    resultContainer.innerHTML = result;
+  }
+
+  document.getElementById('m1rows').addEventListener('change', function() {
+    createMatrixInputs(parseInt(this.value), parseInt(document.getElementById('m1cols').value), 'matrix1');
+  });
+  document.getElementById('m1cols').addEventListener('change', function() {
+    createMatrixInputs(parseInt(document.getElementById('m1rows').value), parseInt(this.value), 'matrix1');
+  });
+  document.getElementById('m2rows').addEventListener('change', function() {
+    createMatrixInputs(parseInt(this.value), parseInt(document.getElementById('m2cols').value), 'matrix2');
+  });
+  document.getElementById('m2cols').addEventListener('change', function() {
+    createMatrixInputs(parseInt(document.getElementById('m2rows').value), parseInt(this.value), 'matrix2');
+  });
+
+  createMatrixInputs(2, 2, 'matrix1');
+  createMatrixInputs(2, 2, 'matrix2');
+</script>
+</body>
+</html>

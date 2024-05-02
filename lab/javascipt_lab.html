@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Generate First N Prime Numbers</title>
+  <style>
+    body{
+        text-align: center;
+        margin: 50px;
+        background-color: bisque;
+        color: black;
+        font-size: large;
+    }
+  </style>
+  <script>
+    function generatePrimes(n) {
+      var primes = [];
+      var num = 2;
+      while (primes.length < n) {
+        if (isPrime(num)) {
+          primes.push(num);
+        }
+        num++;
+      }
+      return primes;
+    }
+
+    function isPrime(num) {
+      if (num <= 1) {
+        return false;
+      }
+      for (var i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    function displayPrimes() {
+      var n = parseInt(document.getElementById('n').value);
+      var primes = generatePrimes(n);
+      document.getElementById('result').innerHTML = 'First ' + n + ' prime numbers: ' + primes.join(', ');
+    }
+  </script>
+</head>
+<body>
+  <label for="n">Number of prime numbers to generate: </label>
+  <input type="text" id="n">
+  <button onclick="displayPrimes()">
+    <font face="Sans-serif">
+      Generate
+    </font>
+  </button>
+  <div id="result"></div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Details</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    #container {
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .student-details {
+        display: none;
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+
+<div id="container">
+    <h1>Student Details</h1>
+    <button onclick="showDetails(1)">Student 1</button>
+    <button onclick="showDetails(2)">Student 2</button>
+    <button onclick="showDetails(3)">Student 3</button>
+    <button onclick="showDetails(4)">Student 4</button>
+    <button onclick="showDetails(5)">Student 5</button>
+
+    <div id="student1" class="student-details">
+        <h2>Student 1 Details</h2>
+        <p>Name: B.Roshini</p>
+        <p>Age: 18</p>
+        <p>Grade: A</p>
+    </div>
+    <div id="student2" class="student-details">
+        <h2>Student 2 Details</h2>
+        <p>Name: Soumya</p>
+        <p>Age: 18</p>
+        <p>Grade: B</p>
+    </div>
+    <div id="student3" class="student-details">
+        <h2>Student 3 Details</h2>
+        <p>Name: Jyotika</p>
+        <p>Age: 18</p>
+        <p>Grade: C</p>
+    </div>
+    <div id="student4" class="student-details">
+        <h2>Student 4 Details</h2>
+        <p>Name: Emily Brown</p>
+        <p>Age: 19</p>
+        <p>Grade: A</p>
+    </div>
+    <div id="student5" class="student-details">
+        <h2>Student 5 Details</h2>
+        <p>Name: Michael</p>
+        <p>Age: 20</p>
+        <p>Grade: B</p>
+    </div>
+</div>
+
+<script>
+    function showDetails(studentId) {
+        // Hide all student details
+        var details = document.getElementsByClassName("student-details");
+        for (var i = 0; i < details.length; i++) {
+            details[i].style.display = "none";
+        }
+
+        // Show selected student's details
+        var studentDetails = document.getElementById("student" + studentId);
+        studentDetails.style.display = "block";
+    }
+</script>
+
+</body>
+</html>
